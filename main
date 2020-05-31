@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <mysql.h>
+
+int main (){
+   MYSQL *conn;
+      MYSQL_RES *res;
+      MYSQL_ROW row;
+     char *server = "localhost";
+     char *user = "root";
+     char *password = "1234";
+     char *database = "cines";
+     char *port="3306";
+
+     conn = mysql_init(NULL);
+     if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0))
+     {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+     }
+
+     if (mysql_query(conn, "select * from cine"))
+     {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+     }
+
+     res = mysql_use_result(conn);
+     printf("id \t nombre\t edad\t\n");
+     while ((row = mysql_fetch_row(res)) != NULL)
+     {
+        printf("%s\t%s\t%s\t\n", row[0], row[1], row[2]);
+     }
+     mysql_free_result(res);
+     mysql_close(conn);
+     return 0;
+ }
