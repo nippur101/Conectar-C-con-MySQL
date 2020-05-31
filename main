@@ -25,10 +25,10 @@ int main (){
      }
 
      res = mysql_use_result(conn);
-     printf("id \t nombre\t edad\t\n");
+     printf("id \t sala\t nombreCine\t\n");
      while ((row = mysql_fetch_row(res)) != NULL)
      {
-        printf("%s\t%s\t%s\t\n", row[0], row[1], row[2]);
+        printf("%s\t%s\t%s\t\n", row[0], row[1], row[2]); //Imprime 3 columnas de una tabla
      }
      mysql_free_result(res);
      mysql_close(conn);
