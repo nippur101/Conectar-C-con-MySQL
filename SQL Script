@@ -1,0 +1,50 @@
+create database cines;
+create table clientes(
+id_cliente int not null auto_increment,
+nombre varchar(40),
+pago varchar(40),
+reserva varchar(30),
+nroasientos int,
+precio int,
+descuento int,
+CONSTRAINT PK_COMMONS
+PRIMARY KEY(id_cliente));
+
+create table salas(
+id_sala int not null auto_increment,
+id_cine int,
+id_pelicula int,
+precio int,
+reserva varchar(30),
+nroasientos int,
+asientosres int,
+asientoslib int,
+CONSTRAINT PK_SALAS
+PRIMARY KEY(id_sala)
+)engine = InnoDB;
+
+
+create table cine(
+id_cine int not null auto_increment,
+id_sala int,
+nombre varchar(40),
+nrosalas int,
+direccion varchar(30),
+id_pelicula int,
+sala int,
+CONSTRAINT PK_COMMONS
+PRIMARY KEY(id_cine)
+)engine = InnoDB;
+
+create table peliculas(
+id_pelicula int not null auto_increment,
+id_sala int,
+id_cine int,
+nombre varchar(40),
+genero varchar(40),
+actores varchar(80),
+duracion int,
+descripcion varchar(200),
+CONSTRAINT PK_COMMONS
+PRIMARY KEY(id_pelicula)
+)engine = InnoDB;
